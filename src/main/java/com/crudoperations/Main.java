@@ -1,12 +1,15 @@
 package com.crudoperations;
 
-import com.crudoperations.storage.StoreData;
+import com.crudoperations.storagetest.TestMariaDBConnection;
+import com.crudoperations.storage.*;
 
 public class Main {
 
     public static void main(String args[]) throws Exception {
-        StoreData db = new StoreData();
-        db.testConnection();
-        User user = new User("John", "", 100.00, "member");
+        CanStoreData storeData = new StoreEmployeeData();
+        CanConnectStorage testStorage = new TestMariaDBConnection();
+
+        testStorage.tryConnection();
+        storeData.create();
     }
 }

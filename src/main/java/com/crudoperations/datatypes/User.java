@@ -1,4 +1,4 @@
-package com.crudoperations;
+package com.crudoperations.datatypes;
 
 public class User {
     private String username;

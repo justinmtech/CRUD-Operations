@@ -1,36 +1,21 @@
-package com.crudoperations.storage;
+package com.crudoperations.storagetest;
+
+import com.crudoperations.storage.CanConnectStorage;
 
 import java.sql.DriverManager;
 
-public class StoreData {
+public class TestMySQLConnection implements CanConnectStorage {
 
-    public static void testConnection() {
+    @Override
+    public void tryConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             DriverManager.getConnection("jdbc:mysql://localhost/general",
                     "root", "41oq4ptJeBV4o1");
-            System.out.println("Connection successful!");
+            System.out.println("MySQL connection successful!");
         } catch (Exception ex) {
             System.out.println("Connection failed!");
             System.out.println("SQLException: " + ex.getMessage());
         }
     }
-
-    public void create() {
-
-    }
-
-    public void replace() {
-        //Replace existing db entry
-    }
-
-    public void update() {
-        //Update existing db entry
-    }
-
-    public void delete() {
-        //Delete existing db entry
-    }
-
-
 }
