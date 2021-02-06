@@ -1,4 +1,4 @@
-import java.math.BigDecimal;
+package com.crudoperations;
 
 public class User {
     private String username;

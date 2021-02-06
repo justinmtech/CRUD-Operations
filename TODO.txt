@@ -1,0 +1,2 @@
+Goal: Create a simple console-based database interface that stores user data and displays information about that data.
+Users can be created, edited and deleted from the console, and data about them can also be viewed.
