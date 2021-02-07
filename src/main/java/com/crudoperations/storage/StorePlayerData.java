@@ -1,9 +1,9 @@
 package com.crudoperations.storage;
 
-public class StoreEmployeeData implements CanStoreData {
+public class StorePlayerData implements CanStoreData {
     @Override
     public void create() {
-        System.out.println("Employee data created");
+
     }
 
     @Override

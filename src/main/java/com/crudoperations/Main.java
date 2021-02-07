@@ -1,15 +1,14 @@
 package com.crudoperations;
 
-import com.crudoperations.storagetest.TestMariaDBConnection;
-import com.crudoperations.storage.*;
+import com.crudoperations.commands.CommandHandler;
 
 public class Main {
+    private static boolean running = true;
 
     public static void main(String args[]) throws Exception {
-        CanStoreData storeData = new StoreEmployeeData();
-        CanConnectStorage testStorage = new TestMariaDBConnection();
-
-        testStorage.tryConnection();
-        storeData.create();
+        CommandHandler cmdListener = new CommandHandler();
+        while (running) {
+        cmdListener.listenToCommand();
+        }
     }
 }

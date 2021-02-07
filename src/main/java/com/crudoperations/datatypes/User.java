@@ -1,16 +1,23 @@
 package com.crudoperations.datatypes;
 
+//A simple object only containing primitive data types.
 public class User {
     private String username;
     private String password;
-    private double balance;
-    private String role;
+    private boolean member;
 
-    public User(String username, String password, double balance, String role) {
+    public User(String username, String password, boolean member) {
         this.username = username;
         this.password = password;
-        this.balance = balance;
-        this.role = role;
+        this.member = member;
+    }
+
+    public boolean isMember() {
+        return member;
+    }
+
+    public void setMember(boolean member) {
+        this.member = member;
     }
 
     public String getUsername() {
@@ -27,21 +34,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }
