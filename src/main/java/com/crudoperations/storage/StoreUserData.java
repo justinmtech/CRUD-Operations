@@ -11,36 +11,51 @@ public class StoreUserData implements CanStoreData {
     private boolean member;
     private String field;
     private String value;
-    private final Connection conn;
+    private Connection conn;
     private PreparedStatement prepStmt;
     private String query;
 
-    public StoreUserData(String username, String password, boolean member) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+    public StoreUserData(String username, String password, boolean member) {
         this.username = username;
         this.password = password;
         this.member = member;
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        } catch(SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public StoreUserData(String username, String field, String value) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+    public StoreUserData(String username, String field, String value) {
         this.username = username;
         this.field = field;
         this.value = value;
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        } catch(SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public StoreUserData(String username) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+    public StoreUserData(String username) {
         this.username = username;
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        } catch(SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public StoreUserData() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
-        user = null;
+    public StoreUserData() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/general", "root", "41oq4ptJeBV4o1");
+        } catch(SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override

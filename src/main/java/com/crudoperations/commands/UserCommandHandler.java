@@ -3,16 +3,15 @@ package com.crudoperations.commands;
 import com.crudoperations.storage.CanStoreData;
 import com.crudoperations.storage.StoreUserData;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
-public class CommandHandler {
+public class UserCommandHandler implements CanHandleCommands {
     private final Scanner scanner;
     private String input;
     private CanStoreData storeData;
 
 
-    public CommandHandler() {
+    public UserCommandHandler() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -22,13 +21,14 @@ public class CommandHandler {
         return input;
     }
 
-    public void listenToCommand() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    @Override
+    public void listenToCommand() {
             System.out.println("Enter command: ");
             input = scanner.nextLine();
             processInput();
     }
 
-    private void processInput() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void processInput() {
         switch (input) {
             case "create":
                 create();
@@ -59,7 +59,7 @@ public class CommandHandler {
         }
     }
 
-    private void create() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void create() {
         boolean userCreated = false;
 
         while (!userCreated) {
@@ -68,37 +68,34 @@ public class CommandHandler {
             String password = getInput("Password");
             String memberInput = getInput("Member (True/False)");
             boolean isMember = Boolean.parseBoolean(memberInput);
-
             storeData = new StoreUserData(username, password, isMember);
             storeData.create();
             userCreated = true;
         }
     }
 
-    private void read() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        storeData = new StoreUserData();
-        storeData.read();
-    }
+    public void read() {
+            storeData = new StoreUserData();
+            storeData.read();
+        }
 
-    private void update() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void update() {
             System.out.println("Enter the user you would like to update: ");
             String username = getInput("Username");
             System.out.println("What would you like to update (Username, Password, Membership)?");
             String field = getInput("Update Information");
             String value = getInput("Enter the new " + field);
-
             storeData = new StoreUserData(username, field, value);
             storeData.update();
-
     }
 
-    private void delete() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void delete() {
         String username = getInput("Enter the user you want to delete: ");
-        storeData = new StoreUserData(username);
-        storeData.delete();
+            storeData = new StoreUserData(username);
+            storeData.delete();
     }
 
-    private void help() {
+    public void help() {
         System.out.println("Command list:");
         System.out.println("- Create");
         System.out.println("- Read");
@@ -107,16 +104,16 @@ public class CommandHandler {
         System.out.println("- Help");
     }
 
-    private void quit() {
+    public void quit() {
         System.out.println("Quit successfully.");
     }
 
-    private void createTable() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void createTable() {
         storeData = new StoreUserData();
         storeData.createTable();
     }
 
-    private void deleteTable() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void deleteTable() {
         storeData = new StoreUserData();
         storeData.deleteTable();
     }
